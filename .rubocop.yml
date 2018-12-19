@@ -1,0 +1,4 @@
+MethodLength:
+  Max: 30
+AbcSize:
+  Max: 100

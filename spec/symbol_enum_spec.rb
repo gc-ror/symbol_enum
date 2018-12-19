@@ -9,7 +9,6 @@ class Example < Gcl::SymbolEnum
 end
 
 describe Gcl::SymbolEnum do
-
   describe 'Version' do
     it 'is defined.' do
       expect(Gcl::SymbolEnum::VERSION).not_to be_nil
@@ -40,19 +39,19 @@ describe Gcl::SymbolEnum do
 
   describe 'Loader' do
     it 'loads Integer' do
-      expect(Example.load 1).to eq(Example.item1)
+      expect(Example.load(1)).to eq(Example.item1)
     end
 
     it 'loads Symbol' do
-      expect(Example.load :item1).to eq(Example.item1)
+      expect(Example.load(:item1)).to eq(Example.item1)
     end
 
     it 'loads String' do
-      expect(Example.load 'item1').to eq(Example.item1)
+      expect(Example.load('item1')).to eq(Example.item1)
     end
 
     it 'loads Integer' do
-      expect(Example.load Example.first).to eq(Example.item1)
+      expect(Example.load(Example.first)).to eq(Example.item1)
     end
   end
 

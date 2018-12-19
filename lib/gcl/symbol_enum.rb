@@ -1,4 +1,7 @@
-require "gcl/symbol_enum/version"
+# frozen_string_literal: true
+
+# noinspection RubyResolve
+require 'gcl/symbol_enum/version'
 
 module Gcl
   #
@@ -31,20 +34,20 @@ module Gcl
     def ==(other)
       case other
       when self.class
-        self.id == other.id
+        id == other.id
       when Integer
-        self.id == other
+        id == other
       when Symbol
-        self.symbol == other
+        symbol == other
       when String
-        self.to_s == other
+        to_s == other
       else
         false
       end
     end
 
     def !=(other)
-      !(self == other)
+      !(self == (other))
     end
 
     def self.each(&block)
@@ -91,7 +94,11 @@ module Gcl
     end
 
     def self.[](value)
-      load value
+      load(value)
+    end
+
+    def self.value
+      # code here
     end
 
     def self.dump(value)
