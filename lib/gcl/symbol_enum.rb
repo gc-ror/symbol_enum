@@ -47,7 +47,7 @@ module Gcl
     end
 
     def !=(other)
-      !(self == (other))
+      !(self == other)
     end
 
     def self.each(&block)
@@ -94,6 +94,7 @@ module Gcl
     end
 
     def self.[](value)
+      # noinspection RubyResolve
       load(value)
     end
 
@@ -117,6 +118,7 @@ module Gcl
     class << self
       private
 
+      # noinspection RubyResolve
       attr_reader :values, :index
     end
 
