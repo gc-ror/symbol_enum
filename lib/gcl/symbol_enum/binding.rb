@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class SymbolEnum
+  #
+  # Bind model's attribute to enum serializer
+  #
+  # noinspection RubyResolve
   module Binding
     def bind(model_class, attribute_name, namespace = attribute_name)
       symbols = self
@@ -14,8 +18,10 @@ class SymbolEnum
           name = [namespace, symbol.to_s].compact!.join('_')
           scope name, -> { where(attribute_name => symbol) }
 
-          define_method "#{name}?", <<-RUBY
-            #{attribute_name} == #{symbol.to_s}
+          class_eval <<-RUBY, __FILE__ , __LINE__
+            def #{name}?
+              #{attribute_name} == #{symbol}
+            end
           RUBY
         end
       end
