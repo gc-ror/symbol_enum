@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'gcl-symbol_enum'
+gem 'gcl-symbol_enum', git: 'git@github.com:gc-ror/symbol_enum.git'
 ```
 
 And then execute:
