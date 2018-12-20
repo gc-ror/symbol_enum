@@ -71,9 +71,11 @@ Using in view(HAML)
   = f.collection_select :example, ExampleModel::Example, :id, :text
 
 ```
-Define as followings...
 
 ### Binding
+Define as followings...
+
+```ruby
 class ExampleModel < ApplicationRecord
   class Example < Gcl::SymbolEnum
      declare do
@@ -84,13 +86,15 @@ class ExampleModel < ApplicationRecord
 
   Example.bind self, :example
 end
-Then this binds serializer to specified attribute and add following feature.
+```
 
+Then this binds serializer to specified attribute and add following feature.
+```ruby
 aa = ExampleModel.example_test1  # equiv to where(example: :test1)
-aa.first.example_test1? # returns true
+aa.first.example_test1? # returns true if example is :test1
+```
 Third parameter of Example#bind is namespace which is prefix of item name.
 When you do not need prefix, specify nil.
-
 
 ## Development
 
