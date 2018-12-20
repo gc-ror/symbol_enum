@@ -22,6 +22,8 @@ Or install it yourself as:
 
 ## Usage
 
+### Basic
+
 Define model and enumeration
 
 ```ruby
@@ -67,7 +69,28 @@ Using in view(HAML)
 = form_with model: @example_model do |f|
   = f.label :example
   = f.collection_select :example, ExampleModel::Example, :id, :text
+
 ```
+Define as followings...
+
+### Binding
+class ExampleModel < ApplicationRecord
+  class Example < Gcl::SymbolEnum
+     declare do
+        item 1, :test1
+        item 2, :test2
+     end
+  end
+
+  Example.bind self, :example
+end
+Then this binds serializer to specified attribute and add following feature.
+
+aa = ExampleModel.example_test1  # equiv to where(example: :test1)
+aa.first.example_test1? # returns true
+Third parameter of Example#bind is namespace which is prefix of item name.
+When you do not need prefix, specify nil.
+
 
 ## Development
 
