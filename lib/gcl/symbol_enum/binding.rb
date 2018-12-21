@@ -20,7 +20,7 @@ class SymbolEnum
 
           class_eval <<-RUBY, __FILE__ , __LINE__
             def #{name}?
-              #{attribute_name} == #{symbol}
+              #{attribute_name} == :#{symbol}
             end
           RUBY
         end
