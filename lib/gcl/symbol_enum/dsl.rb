@@ -19,9 +19,10 @@ class SymbolEnum
       v = new(*args).freeze
       values << v
 
-      raise if index.key?(v.id) || index.key?(v.to_s) || index.key?(v.to_sym)
+      raise if index.key?(v.id) || index.key?(v.id.to_s) || index.key?(v.to_s) || index.key?(v.to_sym)
 
       index[v.to_i] = v
+      index[v.to_i.to_s] = v
       index[v.to_s] = v
       index[v.to_sym] = v
 

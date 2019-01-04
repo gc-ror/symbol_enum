@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   if spec.respond_to?(:metadata)
     spec.metadata['allowed_push_host'] = ''
-    spec.metadata['homepage_uri'] = spec.homepage
+    spec.metadata['homepage_uri'] = spec.homepage8
     spec.metadata['source_code_uri'] = spec.homepage
     spec.metadata['changelog_uri'] = spec.homepage
   else
