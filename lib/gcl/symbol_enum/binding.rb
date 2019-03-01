@@ -30,7 +30,7 @@ module Gcl
         end
       end
 
-      def included(klass)
+      def self.included(klass)
         klass.extend ClassMethods
       end
     end
