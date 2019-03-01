@@ -6,25 +6,31 @@ class SymbolEnum
   #
   # noinspection RubyResolve
   module Binding
-    def bind(model_class, attribute_name, namespace = attribute_name)
-      symbols = self
+    module ClassMethods
+      def bind(model_class, attribute_name, namespace = attribute_name)
+        symbols = self
 
-      namespace = namespace&.to_s
+        namespace = namespace&.to_s
 
-      model_class.instance_exec do
-        serialize attribute_name, symbols
+        model_class.instance_exec do
+          serialize attribute_name, symbols
 
-        symbols.each do |symbol|
-          name = [namespace, symbol.to_s].compact!.join('_')
-          scope name, -> { where(attribute_name => symbol) }
+          symbols.each do |symbol|
+            name = [namespace, symbol.to_s].compact!.join('_')
+            scope name, -> { where(attribute_name => symbol) }
 
-          class_eval <<-RUBY, __FILE__ , __LINE__
+            class_eval <<-RUBY, __FILE__, __LINE__
             def #{name}?
               #{attribute_name} == :#{symbol}
             end
-          RUBY
+            RUBY
+          end
         end
       end
+    end
+
+    def included(klass)
+      klass.extend ClassMethods
     end
   end
 end
