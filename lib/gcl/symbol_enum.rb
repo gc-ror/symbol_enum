@@ -10,9 +10,8 @@ module Gcl
   # Symbol Enumerator
   #
   class SymbolEnum
-    extend ::SymbolEnum::Serializer
-    extend ::SymbolEnum::DSL
-    extend ::SymbolEnum::Binding
+    extend Serializer
+    extend DSL
     extend Enumerable
 
     class << self
