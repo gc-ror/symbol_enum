@@ -17,7 +17,7 @@ module Gcl
             serialize attribute_name, symbols
 
             symbols.each do |symbol|
-              name = [namespace, symbol.to_s].compact!.join('_')
+              name = [namespace, symbol.to_s].compact.join('_')
               scope name, -> { where(attribute_name => symbol) }
 
               class_eval <<-RUBY, __FILE__, __LINE__
