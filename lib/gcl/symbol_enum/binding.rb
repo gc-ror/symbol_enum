@@ -8,8 +8,8 @@ module Gcl
     # noinspection RubyResolve
     module Binding
       module ClassMethods
-        def bind_enum_field(model_class, attribute_name, namespace = attribute_name)
-          symbols = self
+        def bind_enum_field(attribute_name, symbols, namespace: attribute_name)
+          model_class = self
 
           namespace = namespace&.to_s
 
