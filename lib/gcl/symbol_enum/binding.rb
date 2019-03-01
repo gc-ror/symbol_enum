@@ -7,7 +7,7 @@ class SymbolEnum
   # noinspection RubyResolve
   module Binding
     module ClassMethods
-      def bind(model_class, attribute_name, namespace = attribute_name)
+      def bind_enum_field(model_class, attribute_name, namespace = attribute_name)
         symbols = self
 
         namespace = namespace&.to_s
