@@ -15,12 +15,20 @@ module Gcl
         model_class.instance_exec do
           serialize attribute_name, value_class
 
+          define_method "#{attribute_name}_id" do
+            send(attribute_name)&.id
+          end
+
+          define_method "#{attribute_name}_id=" do |id|
+            send("#{attribute_name}=", value_class[id])
+          end
+
           value_class.items.each do |item|
             name = [namespace, item.to_s].compact.join('_')
 
             scope name, -> { where(attribute_name => item) }
 
-            model_class.define_method "#{name}?" do
+            define_method "#{name}?" do
               item === send(attribute_name)
             end
           end
@@ -30,7 +38,7 @@ module Gcl
 
             scope name, -> { where(attribute_name => group.items) }
 
-            model_class.define_method "#{name}?" do
+            define_method "#{name}?" do
               group === send(attribute_name)
             end
           end

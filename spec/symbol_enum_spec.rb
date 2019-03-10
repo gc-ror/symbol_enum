@@ -110,39 +110,38 @@ describe Gcl::SymbolEnum do
   describe 'Attributes' do
     it 'equals to value' do
       m = ExampleModel.new
-      m.example = ExampleModel::ExampleValue.load(1)
+      m.example_id = 1
       expect(m.example == ExampleModel::ExampleValue.item1).to be_truthy
     end
 
     it 'equals to value' do
       m = ExampleModel.new
-      m.example = ExampleModel::ExampleValue.load(3)
+      m.example_id = 3
       expect(m.example == ExampleModel::ExampleValue.item1).to be_falsey
     end
 
     it 'equals to value' do
       m = ExampleModel.new
-      m.example = ExampleModel::ExampleValue.load(1)
+      m.example_id = 1
       expect(m.example_item1?).to be_truthy
     end
 
     it 'equals to value' do
       m = ExampleModel.new
-      m.example = ExampleModel::ExampleValue.load(3)
+      m.example_id = 3
       expect(m.example_item1?).to be_falsey
     end
 
     it 'equals to value' do
       m = ExampleModel.new
-      m.example = ExampleModel::ExampleValue.load(1)
+      m.example_id = 1
       expect(m.example_group1?).to be_truthy
     end
 
     it 'equals to value' do
       m = ExampleModel.new
-      m.example = ExampleModel::ExampleValue.load(3)
+      m.example_id = 3
       expect(m.example_group1?).to be_falsey
     end
-
   end
 end
