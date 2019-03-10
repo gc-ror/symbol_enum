@@ -20,7 +20,7 @@ module Gcl
           end
 
           define_method "#{attribute_name}_id=" do |id|
-            send("#{attribute_name}=", value_class[id])
+            send("#{attribute_name}=", value_class[id&.to_i])
           end
 
           value_class.items.each do |item|
