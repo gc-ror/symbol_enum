@@ -6,6 +6,7 @@ module Gcl
     # Bind model's attribute to enum serializer
     #
     # noinspection RubyResolve
+
     module Binding
       def bind_enum_field(attribute_name, value_class, namespace: attribute_name)
         model_class = self
@@ -13,7 +14,8 @@ module Gcl
         namespace = namespace&.to_s
 
         model_class.instance_exec do
-          serialize attribute_name, value_class
+
+          serialize attribute_name, value_class if model_class.respond_to? :serialize
 
           define_method "#{attribute_name}_id" do
             send(attribute_name)&.id
@@ -26,7 +28,7 @@ module Gcl
           value_class.items.each do |item|
             name = [namespace, item.to_s].compact.join('_')
 
-            scope name, -> { where(attribute_name => item) }
+            scope name, -> { where(attribute_name => item) } if respond_to? :scope
 
             define_method "#{name}?" do
               item === send(attribute_name)
@@ -36,7 +38,7 @@ module Gcl
           value_class.groups.each do |group|
             name = [namespace, group.name.to_s].compact.join('_')
 
-            scope name, -> { where(attribute_name => group.items) }
+            scope name, -> { where(attribute_name => group.items) } if respond_to? :scope
 
             define_method "#{name}?" do
               group === send(attribute_name)
